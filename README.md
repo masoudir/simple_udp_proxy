@@ -38,7 +38,7 @@ Just clone the project:
 git clone https://github.com/masoud-iranmehr/simple_udp_proxy
 ```
 
-### How to use
+# How to use
 
 
 ## Commands
