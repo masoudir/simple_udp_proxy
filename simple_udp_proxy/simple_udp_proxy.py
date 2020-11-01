@@ -5,7 +5,7 @@
 simple_udp_proxy.py: Automatically creates a bidirectional bridge between new udp connections to a unique udp port by creating
 a proxy for each new connection.
 
-Full documentation is provided at https://github.com/masoud-iranmehr/simple_udp_proxy
+Full documentation is provided at https://github.com/masoudir/simple_udp_proxy
 """
 
 # Set up option parsing to get config string
