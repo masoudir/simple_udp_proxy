@@ -18,11 +18,6 @@ This package could be used for every UDP nodes and also every nodes using MAVLin
 Just follow these codes:
 
 ```bash
-pip install -U simple_udp_proxy
-```
-or
-
-```bash
 pip3 install -U simple_udp_proxy
 ```
 
