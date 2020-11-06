@@ -13,8 +13,6 @@ This package could be used for every UDP nodes and also every nodes using MAVLin
 
 # Installation 
 
-simple_udp_proxy supports both python2 and python3.
-
 ## Installing via pip
 
 Just follow these codes:
@@ -66,6 +64,9 @@ The structure would be as follow:
 Just follow "test/test.py" as below:
 
 * `python3 test/test.py`
+
+This code creates a new UDP port while a new incoming UDP port wants to send data to the host UDP port which is set on 
+14550.
 
 The code is as below:
 

@@ -28,14 +28,6 @@ is_verbose = False
 is_log_enabled = False
 
 
-def my_print(essential_data, auxiliary_data):
-    if is_log_enabled:
-        if is_verbose:
-            print(str(essential_data) + " " + str(auxiliary_data))
-        else:
-            print(str(essential_data))
-
-
 class UdpProxy:
     def __init__(self, in_port=14550, out_port=1220, buf_size=1024):
         self.input_port = in_port
@@ -46,7 +38,7 @@ class UdpProxy:
         self.PORT = self.input_port
         self.socket = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
         self.socket.bind((self.IP, self.PORT))
-        my_print(["Udp_Proxy established"], [
+        self.my_print(["Udp_Proxy established"], [
             "input port " + str(self.input_port) + " and forwards incoming messages to ports starting from " + str(
                 self.output_port)])
 
@@ -62,21 +54,29 @@ class UdpProxy:
                 return self.pair_list[i][0]
         new_port = len(self.pair_list) + self.output_port
         destination_addr = ("127.0.0.1", new_port)
-        my_print(["new pair"], [addr, destination_addr])
+        self.my_print(["new pair"], [addr, destination_addr])
         self.pair_list.append([addr, destination_addr])
         return destination_addr
 
     def receive(self, buff_size):
         data, addr = self.socket.recvfrom(buff_size)
-        my_print(["received a message from ", addr], ["data = ", data])
+        self.my_print(["received a message from ", addr], ["data = ", data])
         if addr and data:
             destination_addr = self.check_pairing(addr)
-            my_print(["forwarded a message from ", addr, "into address of ", str(destination_addr)], ["data = ", data])
+            self.my_print(["forwarded a message from ", addr, "into address of ", str(destination_addr)], ["data = ", data])
             self.socket.sendto(data, destination_addr)
 
     def thread_receive(self):
         while True:
             self.receive(self.BUF_SIZE)
+
+    @staticmethod
+    def my_print(essential_data, auxiliary_data):
+        if is_log_enabled:
+            if is_verbose:
+                print(str(essential_data) + " " + str(auxiliary_data))
+            else:
+                print(str(essential_data))
 
 
 if __name__ == "__main__":
